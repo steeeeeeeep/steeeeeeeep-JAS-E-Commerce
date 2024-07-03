@@ -1,0 +1,6 @@
+@JASApi_HostAddress = http://localhost:5062
+
+GET {{JASApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
