@@ -5,11 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace JASData.Models;
 
 [Table("JASProduct", Schema = "Reference")]
-public class Product
+public class Product : BaseEntity
 {
     [Key]
     [Required]
     public long Id { get; set; }
+
+    [Required]
+    public int ProductCategoryId { get; set; }
+    [ForeignKey(nameof(ProductCategoryId))]
+    public virtual ProductCategory ProductCategory { get; set;}
 
     [Required(ErrorMessage = "Name is required.")]
     public string? Name { get; set; }
@@ -23,6 +28,4 @@ public class Product
     public string? Image { get; set; }
     public int Quantity { get; set; }
     public bool Featured { get; set; }
-    public DateTime CreatedOn { get; set; } = DateTime.Now;
-    public DateTime UpdatedOn { get; set; } = DateTime.Now;
 }
