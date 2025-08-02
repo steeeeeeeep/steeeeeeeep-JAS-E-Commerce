@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JASApi", "JASApi\JASApi.csproj", "{73680F3D-9A91-4EEF-A88A-414040FD8AF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JASData", "JASData\JASData.csproj", "{D1DEF762-D126-4ABD-BCF9-95766D47AC71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JASClient", "JASClient\JASClient.csproj", "{4058B685-C6D4-472E-B2F2-A52B163A28C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JAS.Shared", "JAS.Shared\JAS.Shared.csproj", "{CB8E8B17-2CF8-45C6-A616-3E2FF11FF07E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JASData", "JASData\JASData.csproj", "{D1DEF762-D126-4ABD-BCF9-95766D47AC71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JASApp.Api", "JASApp\Server\JASApp.Api.csproj", "{CDCCC4E7-D01A-4AAE-8B36-F6F9B7115936}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JAS.Shared", "JAS.Shared\JAS.Shared.csproj", "{CB8E8B17-2CF8-45C6-A616-3E2FF11FF07E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JASApp.Client", "JASApp\Client\JASApp.Client.csproj", "{1B9EA782-F89E-4E77-A0A0-8BF5DD565175}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "JASApp\Web\Web\Web.csproj", "{7C9AF487-8909-4E9D-B65C-6BC488F87C28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Client", "JASApp\Web\Web.Client\Web.Client.csproj", "{8DFB0938-0DD8-478D-9C96-D6423700AB54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{73680F3D-9A91-4EEF-A88A-414040FD8AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73680F3D-9A91-4EEF-A88A-414040FD8AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73680F3D-9A91-4EEF-A88A-414040FD8AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73680F3D-9A91-4EEF-A88A-414040FD8AF2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4058B685-C6D4-472E-B2F2-A52B163A28C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4058B685-C6D4-472E-B2F2-A52B163A28C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4058B685-C6D4-472E-B2F2-A52B163A28C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4058B685-C6D4-472E-B2F2-A52B163A28C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D1DEF762-D126-4ABD-BCF9-95766D47AC71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D1DEF762-D126-4ABD-BCF9-95766D47AC71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1DEF762-D126-4ABD-BCF9-95766D47AC71}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,22 @@ Global
 		{CB8E8B17-2CF8-45C6-A616-3E2FF11FF07E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB8E8B17-2CF8-45C6-A616-3E2FF11FF07E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB8E8B17-2CF8-45C6-A616-3E2FF11FF07E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDCCC4E7-D01A-4AAE-8B36-F6F9B7115936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDCCC4E7-D01A-4AAE-8B36-F6F9B7115936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDCCC4E7-D01A-4AAE-8B36-F6F9B7115936}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDCCC4E7-D01A-4AAE-8B36-F6F9B7115936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B9EA782-F89E-4E77-A0A0-8BF5DD565175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B9EA782-F89E-4E77-A0A0-8BF5DD565175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B9EA782-F89E-4E77-A0A0-8BF5DD565175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B9EA782-F89E-4E77-A0A0-8BF5DD565175}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C9AF487-8909-4E9D-B65C-6BC488F87C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C9AF487-8909-4E9D-B65C-6BC488F87C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C9AF487-8909-4E9D-B65C-6BC488F87C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C9AF487-8909-4E9D-B65C-6BC488F87C28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DFB0938-0DD8-478D-9C96-D6423700AB54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DFB0938-0DD8-478D-9C96-D6423700AB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DFB0938-0DD8-478D-9C96-D6423700AB54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DFB0938-0DD8-478D-9C96-D6423700AB54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

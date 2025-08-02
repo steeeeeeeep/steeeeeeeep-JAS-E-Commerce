@@ -7,9 +7,9 @@ public interface IDomainProductService
     Task<IEnumerable<Product>> GetAllProductsAsync();
     Task<IEnumerable<Product>> GetAllProductsByCategoryAsync(int categoryId);
     Task<Product> GetProductByIdAsync(long id);
-    Task<Product> AddProduct(Product product);
-    Task<Product> UpdateProduct(long id, Product product);
-    Task<Product> DeleteProduct(long id);
+    Task<bool> AddProduct(Product product);
+    Task<bool> UpdateProduct(long id, Product product);
+    Task<bool> DeleteProduct(long id);
 }
 
 public class DomainProductService : IDomainProductService
@@ -35,17 +35,17 @@ public class DomainProductService : IDomainProductService
     {
         return await _repository.GetProductByIdAsync(id);
     }
-    public async Task<Product> AddProduct(Product product)
+    public async Task<bool> AddProduct(Product product)
     {
         return await _repository.AddProduct(product);
     }
 
-    public async Task<Product> DeleteProduct(long id)
+    public async Task<bool> DeleteProduct(long id)
     {
         return await _repository.DeleteProduct(id);
     }
 
-    public async Task<Product> UpdateProduct(long id, Product product)
+    public async Task<bool> UpdateProduct(long id, Product product)
     {
         return await _repository.UpdateProduct(id, product);
     }
