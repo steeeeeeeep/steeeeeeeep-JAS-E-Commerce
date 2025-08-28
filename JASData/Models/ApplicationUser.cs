@@ -9,8 +9,7 @@ namespace JASData.Models;
 [Table("JasApplicationUser", Schema = "ApplicationUsers")]
 public class ApplicationUser : IdentityUser
 {
-    [Key, Required]
-    public int Id { get; set; }
+
     [JsonIgnore, IgnoreDataMember]
     public override string PasswordHash { get; set; }
 

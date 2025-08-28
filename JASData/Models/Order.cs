@@ -10,7 +10,7 @@ public class Order : BaseEntity
     [Key, Required]
     public int Id { get; set; }
     
-    public int ? ApplicationUserId { get; set; }
+    public string ApplicationUserId { get; set; }
     [ForeignKey(nameof(ApplicationUserId))]
     public virtual ApplicationUser ApplicationUser { get; set; }
     public decimal TotalAmount { get; set; }
