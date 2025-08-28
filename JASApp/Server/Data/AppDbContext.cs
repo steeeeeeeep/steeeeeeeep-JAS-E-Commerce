@@ -1,19 +1,18 @@
-﻿using JASData.Models;
+﻿using Duende.IdentityServer.EntityFramework.Options;
+using JASData.Models;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
-namespace JASApi.Data;
+namespace JASApp.Api.Data;
 
-public class AppDbContext : DbContext //ApiAuthorizationDbContext<ApplicationUser>
+public class AppDbContext(DbContextOptions<AppDbContext> options,
+    IOptions<OperationalStoreOptions> operationalStoreOptions) : ApiAuthorizationDbContext<ApplicationUser>(options, operationalStoreOptions)
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //{
-    //    optionsBuilder.UseLazyLoadingProxies();
-    //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<ProductCategory>()
         .HasOne(pc => pc.ParentCategory)
         .WithMany(pc => pc.SubCategories)
@@ -27,6 +26,7 @@ public class AppDbContext : DbContext //ApiAuthorizationDbContext<ApplicationUse
     }
 
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+    public DbSet<ApplicationRole> ApplicationRoles { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductCategory> ProductCategories { get; set; }
     public DbSet<Purchase> Purchases { get; set; } = default!;
