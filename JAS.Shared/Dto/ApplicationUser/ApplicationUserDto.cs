@@ -1,22 +1,39 @@
 ﻿using JAS.Shared.Dto.Order;
+using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace JAS.Shared.Dto.ApplicationUser;
 
-public class ApplicationUserDto
+public class ApplicationUserDto : IdentityUser
 {
-    public int Id { get; set; }
-    public string Username { get; set; }
-    public string Email { get; set; }
-    public string PasswordHash { get; set; }
+
+    [JsonIgnore, IgnoreDataMember]
+    public override string PasswordHash { get; set; }
+
+    [NotMapped]
+    public string Password { get; set; }
+
+    [NotMapped]
+    public string ConfirmPassword { get; set; }
+
+    [JsonIgnore, IgnoreDataMember, NotMapped]
+    public string Name
+    {
+        get
+        {
+            return UserName;
+        }
+        set
+        {
+            UserName = value;
+        }
+    }
+
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string PhoneNumber { get; set; }
-    public string Address { get; set; }
-    public string City { get; set; }
-    public string State { get; set; }
-    public string PostalCode { get; set; }
-    public string Country { get; set; }
-    public bool IsActive { get; set; }
+    public ICollection<ApplicationRoleDto> Roles { get; set; }
 
     public ICollection<OrderDto> Orders { get; set; }
 }

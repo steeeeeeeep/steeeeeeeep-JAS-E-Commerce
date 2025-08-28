@@ -1,5 +1,5 @@
 ﻿namespace JAS.Shared.Dto.ProductImage;
-public class ProductImageDto : BaseDto
+public class GetProductImageDto : BaseDto
 {
     public long ProductImageId { get; set; }
     public long ProductId { get; set; }

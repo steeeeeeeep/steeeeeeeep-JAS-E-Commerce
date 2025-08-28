@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace JAS.Shared.Dto.ProductCategory;
 
-public class ProductCategoryCreateDto : BaseDto
+public class ProductCategoryCreateOrUpdateDto : BaseDto
 {
     public int ProductCategoryId { get; set; }
 
@@ -12,5 +12,5 @@ public class ProductCategoryCreateDto : BaseDto
 
     public string? Description { get; set; }
     public int Quantity { get; set; }
-    public bool Featured { get; set; }
+    public bool IsFeatured { get; set; }
 }

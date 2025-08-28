@@ -5,7 +5,7 @@ namespace JAS.Shared.Dto.Order;
 public class AddOrUpdateOrderDto : BaseDto
 {
     public int Id { get; set; }
-    public int ? ApplicationUserId { get; set; }
+    public string ApplicationUserId { get; set; }
     public decimal TotalAmount { get; set; }
     public string PaymentMethod { get; set; }
     public string ShippingAddress { get; set; }

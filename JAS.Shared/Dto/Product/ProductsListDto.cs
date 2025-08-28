@@ -1,9 +1,8 @@
-﻿using JAS.Shared.Dto;
-using JAS.Shared.Dto.CartItem;
+﻿using JAS.Shared.Dto.CartItem;
 using JAS.Shared.Dto.Inventory;
 using JAS.Shared.Dto.Order;
 
-namespace JAS.Shared.Dtos.Product;
+namespace JAS.Shared.Dto.Product;
 
 public class ProductsListDto : BaseDto
 {

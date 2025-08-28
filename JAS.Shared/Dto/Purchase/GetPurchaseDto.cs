@@ -2,7 +2,7 @@
 
 namespace JAS.Shared.Dto.Purchase;
 
-public class PurchaseDto : BaseDto
+public class GetPurchaseDto : BaseDto
 {
     public long PurchaseId { get; set; }
 

@@ -1,12 +1,12 @@
-﻿using JAS.Shared.Dto.Order;
-using JAS.Shared.Dto;
-using System.ComponentModel.DataAnnotations;
+﻿using JAS.Shared.Dto;
 using JAS.Shared.Dto.CartItem;
 using JAS.Shared.Dto.Inventory;
+using JAS.Shared.Dto.Order;
+using System.ComponentModel.DataAnnotations;
 
 namespace JAS.Shared.Dtos.Product;
 
-public class ProductUpdateDto : BaseDto
+public class ProductCreateOrUpdateDto : BaseDto
 {
     public long Id { get; set; }
 
@@ -23,10 +23,11 @@ public class ProductUpdateDto : BaseDto
     public int Quantity { get; set; }
     public bool IsFeatured { get; set; }
     public string SKU { get; set; }
-    public decimal? DiscountPrice { get; set; }
+    public decimal DiscountPrice { get; set; }
     public string ImageUrl { get; set; }
     public bool IsActive { get; set; }
     public ICollection<OrderItemDto> OrderItems { get; set; }
     public ICollection<CartItemDto> CartItems { get; set; }
     public ICollection<InventoryDto> InventoryItems { get; set; }
+
 }
