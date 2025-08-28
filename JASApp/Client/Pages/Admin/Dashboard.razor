@@ -1,0 +1,31 @@
+﻿@page "/admin/home"
+
+<MudGrid Justify="Justify.Center" Spacing="2" >
+    <MudItem xs="12" class="d-flex justify-content-center">
+        <MudPaper Class="doc-section-component-container">
+            <MudChart ChartType="ChartType.Bar" ChartSeries="@_series" @bind-SelectedIndex="_index" XAxisLabels="@_xAxisLabels" Width="@_width" Height="@_height" AxisChartOptions="_axisChartOptions"></MudChart>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="8">
+        <MudChart ChartType="ChartType.Line" ChartSeries="@Series" XAxisLabels="@XAxisLabels" Width="100%" Height="350" ChartOptions="options"></MudChart>
+        <MudButton @onclick="RandomizeData">Randomize Data</MudButton>
+        <MudMenu Label="Interpolation Algorithm" FullWidth="true">
+            <MudMenuItem OnClick="() => OnClickMenu(InterpolationOption.Straight)">Straight</MudMenuItem>
+            <MudMenuItem OnClick="() => OnClickMenu(InterpolationOption.NaturalSpline)">Natural Spline</MudMenuItem>
+            <MudMenuItem OnClick="() => OnClickMenu(InterpolationOption.EndSlope)">End Slope</MudMenuItem>
+            <MudMenuItem OnClick="() => OnClickMenu(InterpolationOption.Periodic)">Periodic</MudMenuItem>
+        </MudMenu>
+        <MudCheckBox T="bool" ValueChanged="(v) => Series.ForEach(x => x.ShowDataMarkers = v)" Label="Show Data Markers"></MudCheckBox>
+    </MudItem>
+    <MudItem xs="4">
+        <MudPaper Class="pa-4">
+            <MudChart ChartType="ChartType.Donut" Width="300px" Height="300px" @bind-SelectedIndex="_index" InputData="@data" InputLabels="@labels"></MudChart>
+        </MudPaper>
+        <MudPaper Class="pa-4 mt-2 d-flex justify-center">
+            <MudButton OnClick="AddDataSize" Variant="Variant.Filled" Color="Color.Primary">Add</MudButton>
+            <MudButton @onclick="RandomizeData" Variant="Variant.Filled" Class="mx-4">Randomize</MudButton>
+            <MudButton OnClick="RemoveDataSize" Variant="Variant.Filled" Color="Color.Secondary">Remove</MudButton>
+        </MudPaper>
+        <MudText Typo="Typo.h6">Selected portion of the chart: @_index</MudText>
+    </MudItem>
+</MudGrid>

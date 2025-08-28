@@ -1,0 +1,23 @@
+﻿@page "/products"
+
+<MudPaper Style="padding: 20px;" Elevation="0">
+    <MudContainer>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@AddProduct">Add Product</MudButton>
+        <MudDataGrid Items="@ProductList">
+            <Columns>
+                <PropertyColumn Title="Id" Property="x => x.Id" />
+                <PropertyColumn Title="Name" Property="x => x.Name" />
+                <PropertyColumn Title="Price" Property="x => x.Price" />
+                <PropertyColumn Title="Quantity" Property="x => x.Quantity" />
+                <TemplateColumn Title="Featured" CellClass="d-flex justify-end">
+                    <CellTemplate>
+                        <MudStack Row>
+                            <MudRating Size="@Size.Small" Disabled="@context.Item.IsFeatured" />
+                        </MudStack>
+                    </CellTemplate>
+                </TemplateColumn>
+                <PropertyColumn Title="Added on" Property="x => x.CreatedOn" Format="MMM dd, yyyy"/>
+            </Columns>
+        </MudDataGrid>
+    </MudContainer>
+</MudPaper>

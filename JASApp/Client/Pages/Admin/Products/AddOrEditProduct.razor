@@ -1,0 +1,90 @@
+﻿<MudDialog>
+    <TitleContent>
+        <h3>@(IsEdit ? "Update Product" : "Add Product")</h3>
+    </TitleContent>
+    <DialogContent>
+        <MudForm @ref="MudForm">
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudTextField @bind-Value="ProductDto.Name"
+                                  T="string"
+                                  FullWidth
+                                  Variant="Variant.Filled"
+                                  Label="ProductName"
+                                  Placeholder="Enter Product Name"
+                                  Required />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField @bind-Value="ProductDto.Price"
+                                  T="decimal"
+                                  FullWidth
+                                  Variant="Variant.Filled"
+                                  Label="Price"
+                                  Placeholder="Enter Product Price"
+                                  Validation="@Validate(ProductDto.Price)"
+                                  RequiredError="Price is required"
+                                  Error="@(Validate(ProductDto.Price) != null)"
+                                  ErrorText="Price must be greater than 0"
+                                  Required />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField @bind-Value="ProductDto.DiscountPrice"
+                                  T="decimal"
+                                  FullWidth
+                                  Variant="Variant.Filled"
+                                  Label="DiscountPrice"
+                                  Placeholder="Enter DiscountPrice" />
+                </MudItem>
+                <MudItem xs="12">
+                    <MudTextField @bind-Value="ProductDto.Quantity"
+                                  T="int"
+                                  FullWidth
+                                  Variant="Variant.Filled"
+                                  Label="Quantity"
+                                  Placeholder="Enter Quantity"
+                                  Required />
+                </MudItem>
+                <MudItem xs="12">
+                    <MudFileUpload @bind-Value="ProductDto.Image" T="IReadOnlyList<IBrowserFile>" FilesChanged="UploadFiles" Class="mt-6">
+                        <ActivatorContent>
+                            <MudButton Variant="Variant.Filled"
+                                       Color="Color.Primary"
+                                       StartIcon="@Icons.Material.Filled.CloudUpload">
+                                Upload Photo
+                            </MudButton>
+                        </ActivatorContent>
+                    </MudFileUpload>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudTextField @bind-Value="ProductDto.Description"
+                                  T="string"
+                                  FullWidth
+                                  Variant="Variant.Filled"
+                                  Label="Description"
+                                  Placeholder="Description" />
+                </MudItem>
+                <MudItem xs="12">
+                    <MudCheckBox @bind-Value="ProductDto.IsFeatured"
+                                 T="bool"
+                                 Label="Set as Featured Product"
+                                 />
+                </MudItem>
+            </MudGrid>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Outlined" Color="@Color.Error" OnClick=@Cancel>Cancel</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AddProductAsync" Disabled="IsSaving">
+            @{
+                if (IsSaving)
+                {
+                    <MudProgressCircular Size="Size.Small" Color="Color.Secondary" Indeterminate />
+                }
+                else
+                {
+                    <p style="margin: 0">submit</p>
+                }
+            }
+        </MudButton>
+    </DialogActions>
+</MudDialog>
