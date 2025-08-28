@@ -1,5 +1,5 @@
 ﻿using JAS.Shared.Dto.ProductCategory;
-using JASApi.Data;
+using JASApp.Api.Data;
 using JASData.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -61,7 +61,7 @@ public class CategoryController(AppDbContext context) : Controller
     }
 
     [HttpPost]
-    public async Task<ActionResult<bool>> CreateCategoryAsync(ProductCategoryUpdateDto updateCategoryDto)
+    public async Task<ActionResult<bool>> CreateCategoryAsync(ProductCategoryCreateOrUpdateDto updateCategoryDto)
     {
         try
         {
@@ -89,7 +89,7 @@ public class CategoryController(AppDbContext context) : Controller
     }
 
     [HttpPatch("Update/{id}")]
-    public async Task<ActionResult<bool>> UpdateCategoryAsync(int id, ProductCategoryUpdateDto updateCategory)
+    public async Task<ActionResult<bool>> UpdateCategoryAsync(int id, ProductCategoryCreateOrUpdateDto updateCategory)
     {
         try
         {

@@ -1,5 +1,5 @@
 ﻿using JAS.Shared.Dto.Purchase;
-using JASApi.Data;
+using JASApp.Api.Data;
 using JASData.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,16 +16,16 @@ public class PurchaseController(AppDbContext context) : Controller
 
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<PurchaseDto>>> GetAllPurchasesAsync()
+    public async Task<ActionResult<IEnumerable<GetPurchaseDto>>> GetAllPurchasesAsync()
     {
         try
         {
             List<Purchase> Purchases = await _dbContext.Purchases.Where(c => !c.IsDeleted).ToListAsync();
 
             if (Purchases.IsNullOrEmpty())
-                return new List<PurchaseDto>();
+                return new List<GetPurchaseDto>();
 
-            List<PurchaseDto> PurchaseDtos = Purchases.Select(c => new PurchaseDto()
+            List<GetPurchaseDto> PurchaseDtos = Purchases.Select(c => new GetPurchaseDto()
             {
                 PurchaseId = c.PurchaseId,
                 Name = c.Name,
@@ -43,16 +43,16 @@ public class PurchaseController(AppDbContext context) : Controller
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<PurchaseDto>> GetPurchaseByIdAsync(int id)
+    public async Task<ActionResult<GetPurchaseDto>> GetPurchaseByIdAsync(int id)
     {
         try
         {
             Purchase Purchase = await _dbContext.Purchases.Where(c => !c.IsDeleted).FirstOrDefaultAsync(c => c.PurchaseId == id);
 
             if (Purchase == null)
-                return new PurchaseDto();
+                return new GetPurchaseDto();
 
-            PurchaseDto PurchaseDto = new PurchaseDto()
+            GetPurchaseDto PurchaseDto = new GetPurchaseDto()
             {
                 PurchaseId = Purchase.PurchaseId,
                 Name = Purchase.Name,
@@ -70,7 +70,7 @@ public class PurchaseController(AppDbContext context) : Controller
     }
 
     [HttpPost]
-    public async Task<ActionResult<bool>> CreatePurchaseAsync(PurchaseDto dto)
+    public async Task<ActionResult<bool>> CreatePurchaseAsync(GetPurchaseDto dto)
     {
         try
         {
@@ -100,7 +100,7 @@ public class PurchaseController(AppDbContext context) : Controller
     }
 
     [HttpPatch("{id}")]
-    public async Task<ActionResult<bool>> UpdatePurchaseAsync(int id, PurchaseDto dto)
+    public async Task<ActionResult<bool>> UpdatePurchaseAsync(int id, GetPurchaseDto dto)
     {
         try
         {
@@ -127,7 +127,7 @@ public class PurchaseController(AppDbContext context) : Controller
     }
 
     [HttpPatch("delete/{id}")]
-    public async Task<ActionResult<bool>> DeletePurchaseAsync(int id, PurchaseDto dto)
+    public async Task<ActionResult<bool>> DeletePurchaseAsync(int id, GetPurchaseDto dto)
     {
         try
         {

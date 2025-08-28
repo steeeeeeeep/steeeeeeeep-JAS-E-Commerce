@@ -1,4 +1,4 @@
-﻿using JASApi.Data;
+﻿using JASApp.Api.Data;
 using JASData.DomainService.Products;
 using JASData.Models;
 using Microsoft.EntityFrameworkCore;

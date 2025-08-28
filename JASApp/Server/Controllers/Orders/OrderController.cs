@@ -1,5 +1,5 @@
 ﻿using JAS.Shared.Dto.Order;
-using JASApi.Data;
+using JASApp.Api.Data;
 using JASData.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +21,7 @@ public class OrderController(AppDbContext dbContext) : Controller
             List<OrderDto> orderListDto = orders.Select(model => new OrderDto
             {
                 Id = model.Id,
-                ApplicationUserId = model.ApplicationUserId ?? 0,
+                ApplicationUserId = model.ApplicationUserId,
                 TotalAmount = model.TotalAmount,
                 PaymentMethod = model.PaymentMethod,
                 ShippingAddress = model.ShippingAddress,
@@ -59,7 +59,7 @@ public class OrderController(AppDbContext dbContext) : Controller
             OrderDto orderDto = new OrderDto
             {
                 Id = model.Id,
-                ApplicationUserId = model.ApplicationUserId ?? 0,
+                ApplicationUserId = model.ApplicationUserId,
                 TotalAmount = model.TotalAmount,
                 PaymentMethod = model.PaymentMethod,
                 ShippingAddress = model.ShippingAddress,
@@ -107,7 +107,7 @@ public class OrderController(AppDbContext dbContext) : Controller
                 PostalCode = orderDto.PostalCode,
                 Country = orderDto.Country,
                 Status = orderDto.Status,
-                CreatedOn = orderDto.CreatedOn,
+                CreatedOn = orderDto.CreatedOn ?? DateTime.UtcNow,
             };
 
             await _dbContext.AddAsync(order);

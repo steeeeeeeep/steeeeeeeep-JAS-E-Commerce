@@ -1,5 +1,5 @@
 ﻿using JAS.Shared.Dto.Brand;
-using JASApi.Data;
+using JASApp.Api.Data;
 using JASData.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

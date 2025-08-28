@@ -1,5 +1,6 @@
 ﻿using JAS.Shared;
 using JAS.Shared.Dto;
+using JAS.Shared.Dto.Product;
 using JAS.Shared.Dtos.Product;
 using JASData.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@ public class ProductController(IProductService productService) : Controller
     }
 
     [HttpPost]
-    public async Task<ActionResult<bool>> CreateProduct(ProductCreateDto productDto)
+    public async Task<ActionResult<bool>> CreateProduct(ProductCreateOrUpdateDto productDto)
     {
         Product product = new Product()
         {
