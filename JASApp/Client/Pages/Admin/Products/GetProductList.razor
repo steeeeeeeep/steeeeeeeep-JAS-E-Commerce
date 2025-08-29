@@ -1,23 +1,73 @@
 ﻿@page "/products"
 
-<MudPaper Style="padding: 20px;" Elevation="0">
-    <MudContainer>
-        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@AddProduct">Add Product</MudButton>
-        <MudDataGrid Items="@ProductList">
-            <Columns>
-                <PropertyColumn Title="Id" Property="x => x.Id" />
-                <PropertyColumn Title="Name" Property="x => x.Name" />
-                <PropertyColumn Title="Price" Property="x => x.Price" />
-                <PropertyColumn Title="Quantity" Property="x => x.Quantity" />
-                <TemplateColumn Title="Featured" CellClass="d-flex justify-end">
-                    <CellTemplate>
-                        <MudStack Row>
-                            <MudRating Size="@Size.Small" Disabled="@context.Item.IsFeatured" />
-                        </MudStack>
-                    </CellTemplate>
-                </TemplateColumn>
-                <PropertyColumn Title="Added on" Property="x => x.CreatedOn" Format="MMM dd, yyyy"/>
-            </Columns>
-        </MudDataGrid>
-    </MudContainer>
+<MudPaper Style="padding: 20px;" class="d-flex justify-content-center align-items-center" Elevation="0">
+    @if (IsLoading || ProductList.Count() == 0)
+    {
+        <MudProgressCircular Indeterminate Size="Size.Large" />
+    }
+    else
+    {
+        <MudContainer>
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudGrid>
+                        <MudItem xs="8">
+                            <MudTextField @bind-Value="SearchText"
+                              Placeholder="@($"Search {SearchCategory}")"
+                              Variant="Variant.Outlined"
+                              Class="m-1 col-md-6"
+                              Immediate="true"
+                              OnKeyUp="HandleSearch" />
+
+                        </MudItem>
+                        <MudItem xs="4">
+                            <MudText> Search By:</MudText>
+                            <MudSelect @bind-Value="SearchCategory" Immediate>
+                                @foreach (string item in SearchCategories)
+                                {
+                                    <MudSelectItem Value="@item">@item</MudSelectItem>
+                                }
+                            </MudSelect>
+                        </MudItem>
+                    </MudGrid>
+
+                </MudItem>
+                <MudItem xs="12" Class="d-flex justify-content-end">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@ShowAddProduct">Add Product</MudButton>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudDataGrid Items="@FilteredProductList">
+                        <Columns>
+                            <PropertyColumn Title="Id" Property="x => x.Id" />
+                            <PropertyColumn Title="Name" Property="x => x.Name" />
+                            <PropertyColumn Title="Price" Property="x => x.Price" />
+                            <PropertyColumn Title="Quantity" Property="x => x.Quantity" />
+                            <TemplateColumn Title="Featured">
+                                <CellTemplate>
+                                    <MudStack>
+                                        <MudCheckBox Disabled @bind-Value="context.Item.IsFeatured" Color="Color.Warning" CheckedIcon="@Icons.Material.Filled.Star" UncheckedIcon="@Icons.Material.Filled.StarOutline"></MudCheckBox>
+                                    </MudStack>
+                                </CellTemplate>
+                            </TemplateColumn>
+                            <TemplateColumn Title="Action">
+                                <CellTemplate>
+                                    <MudStack Row>
+                                        <MudIconButton OnClick="() => ShowProductDetails(context.Item.Id)"
+                                                       Icon="@Icons.Material.Filled.Visibility"
+                                                       Color="Color.Info" Variant="Variant.Outlined" />
+                                        <MudIconButton OnClick="() => ShowUpdateProduct(context.Item.Id)"
+                                                       Icon="@Icons.Material.Filled.Edit"
+                                                       Color="Color.Success" Variant="Variant.Outlined" />
+                                        <MudIconButton OnClick="() => DeleteProduct(context.Item.Id)"
+                                                       Icon="@Icons.Material.Filled.Delete"
+                                                       Color="Color.Error" Variant="Variant.Outlined" />
+                                    </MudStack>
+                                </CellTemplate>
+                            </TemplateColumn>
+                        </Columns>
+                    </MudDataGrid>
+                </MudItem>
+            </MudGrid>
+        </MudContainer>
+    }
 </MudPaper>
