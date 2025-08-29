@@ -1,9 +1,6 @@
 ﻿<MudDialog>
-    <TitleContent>
-        <h3>@(IsEdit ? "Update Product" : "Add Product")</h3>
-    </TitleContent>
     <DialogContent>
-        <MudForm @ref="MudForm">
+        <MudForm @ref="MudForm" Disabled="IsViewing">
             <MudGrid>
                 <MudItem xs="12">
                     <MudTextField @bind-Value="ProductDto.Name"
@@ -73,18 +70,26 @@
         </MudForm>
     </DialogContent>
     <DialogActions>
-        <MudButton Variant="Variant.Outlined" Color="@Color.Error" OnClick=@Cancel>Cancel</MudButton>
-        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="AddProductAsync" Disabled="IsSaving">
-            @{
-                if (IsSaving)
+        @if (!IsViewing)
+        {
+            <MudButton Variant="Variant.Outlined" Color="@Color.Error" OnClick=@Cancel>Cancel</MudButton>
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="@(IsEdit ? UpdateProductAsync : AddProductAsync)" Disabled="IsSaving">
+                @if (IsSaving)
                 {
                     <MudProgressCircular Size="Size.Small" Color="Color.Secondary" Indeterminate />
                 }
                 else
                 {
-                    <p style="margin: 0">submit</p>
+                    <p style="margin: 0">Submit</p>
                 }
-            }
-        </MudButton>
+            </MudButton>
+        }
+        else
+        {
+            <MudTooltip Text="Edit Product">
+                <MudButton OnClick="EnableEditing" Variant="Variant.Filled" Color="Color.Primary">Edit</MudButton>
+            </MudTooltip>
+        }
+
     </DialogActions>
 </MudDialog>
